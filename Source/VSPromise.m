@@ -49,64 +49,12 @@ typedef NS_ENUM(uint8_t, PRState) {
 
 + (VSPromise *)combineAny:(NSArray<VSPromise *> *)promises
 {
-    NSInteger count = promises.count;
-    NSObject *lockObject = [NSObject new];
-    __block NSInteger firedCount = 0;
-    
-    VSPromise *result = [VSPromise promise];
-    void(^resolveIfNeeded)(void) = ^{
-        if (count <= firedCount) {
-            [result resolve:nil];
-        }
-    };
-    
-    for (VSPromise *promise in promises) {
-        promise.finaly(^{
-            @synchronized(lockObject) {
-                firedCount++;
-                resolveIfNeeded();
-            }
-        });
-    }
-    
-    return result;
+    return [self combinePromises:promises rejectOnFail:NO];
 }
 
 + (VSPromise *)combineResolved:(NSArray<VSPromise *> *)promises
 {
-    NSInteger count = promises.count;
-    NSObject *lockObject = [NSObject new];
-    __block NSInteger firedCount = 0;
-    
-    VSPromise *result = [VSPromise promise];
-    void(^resolveIfNeeded)(void) = ^{
-        if (count <= firedCount) {
-            [result resolve:nil];
-        }
-    };
-    
-    __block BOOL failed = NO;
-    for (VSPromise *promise in promises) {
-        promise.then(^id(id result) {
-            @synchronized(lockObject) {
-                if (!failed) {
-                    firedCount++;
-                    resolveIfNeeded();
-                }
-                
-                return nil;
-            }
-        }).fail(^id(NSError *error) {
-            @synchronized(lockObject) {
-                failed = YES;
-                [result reject:error];
-            }
-            
-            return nil;
-        });
-    }
-    
-    return result;
+    return [self combinePromises:promises rejectOnFail:YES];
 }
 
 #pragma mark - Initializations and Deallocation
@@ -231,6 +179,41 @@ typedef NS_ENUM(uint8_t, PRState) {
 }
 
 #pragma mark - Private Methods
+
++ (VSPromise *)combinePromises:(NSArray<VSPromise *> *)promises rejectOnFail:(BOOL)rejectOnFail
+{
+    NSObject *lockObject = [NSObject new];
+    dispatch_group_t group = dispatch_group_create();
+    for (NSInteger index = 0; index < promises.count; index++) {
+        dispatch_group_enter(group);
+    }
+    
+    VSPromise *result = [VSPromise promise];
+    __block BOOL failed = NO;
+    for (VSPromise *promise in promises) {
+        promise.fail(^id(NSError *error) {
+            @synchronized(lockObject) {
+                if (rejectOnFail) {
+                    failed = YES;
+                    [result reject:nil];
+                }
+            }
+            
+            return nil;
+        })
+        .finaly(^{
+            dispatch_group_leave(group);
+        });
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        if (!failed) {
+            [result resolve:nil];
+        }
+    });
+    
+    return result;
+}
 
 - (void)processBlock:(VSCallback)block
 {

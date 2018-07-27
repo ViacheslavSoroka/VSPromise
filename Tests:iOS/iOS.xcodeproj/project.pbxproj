@@ -14,6 +14,8 @@
 		D59DAFB8210B26990080C334 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59DAFB6210B26990080C334 /* LaunchScreen.storyboard */; };
 		D59DAFBB210B26990080C334 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D59DAFBA210B26990080C334 /* main.m */; };
 		D59DAFC5210B26990080C334 /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D59DAFC4210B26990080C334 /* iOSTests.m */; };
+		D59DAFD2210B27640080C334 /* VSPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = D59DAFD1210B27640080C334 /* VSPromise.m */; };
+		D59DAFD6210B278D0080C334 /* VSPromiseProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D59DAFD5210B278D0080C334 /* VSPromiseProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		D59DAFC0210B26990080C334 /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59DAFC4210B26990080C334 /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
 		D59DAFC6210B26990080C334 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D59DAFD0210B27640080C334 /* VSPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPromise.h; sourceTree = "<group>"; };
+		D59DAFD1210B27640080C334 /* VSPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSPromise.m; sourceTree = "<group>"; };
+		D59DAFD4210B278D0080C334 /* VSPromiseProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSPromiseProvider.h; sourceTree = "<group>"; };
+		D59DAFD5210B278D0080C334 /* VSPromiseProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSPromiseProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 		D59DAF9F210B26980080C334 = {
 			isa = PBXGroup;
 			children = (
+				D59DAFCF210B27640080C334 /* Source */,
 				D59DAFAA210B26980080C334 /* iOS */,
 				D59DAFC3210B26990080C334 /* iOSTests */,
 				D59DAFA9210B26980080C334 /* Products */,
@@ -97,10 +104,30 @@
 		D59DAFC3210B26990080C334 /* iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				D59DAFD3210B278D0080C334 /* Helpers */,
 				D59DAFC4210B26990080C334 /* iOSTests.m */,
 				D59DAFC6210B26990080C334 /* Info.plist */,
 			);
 			path = iOSTests;
+			sourceTree = "<group>";
+		};
+		D59DAFCF210B27640080C334 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D59DAFD0210B27640080C334 /* VSPromise.h */,
+				D59DAFD1210B27640080C334 /* VSPromise.m */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+		D59DAFD3210B278D0080C334 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D59DAFD4210B278D0080C334 /* VSPromiseProvider.h */,
+				D59DAFD5210B278D0080C334 /* VSPromiseProvider.m */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,7 +240,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59DAFD2210B27640080C334 /* VSPromise.m in Sources */,
 				D59DAFC5210B26990080C334 /* iOSTests.m in Sources */,
+				D59DAFD6210B278D0080C334 /* VSPromiseProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

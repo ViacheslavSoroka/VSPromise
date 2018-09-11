@@ -17,15 +17,17 @@ VSPromise supports two methods for installing the library in a project.
 
 To integrate VSPromise into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
-`
+```shell
 target 'TargetName' do
-pod 'VSPromise'
+    pod 'VSPromise'
 end
-`
+```
 
 Then, run the following command:
 
-`$ pod install`
+```shell
+$ pod install
+```
 
 #### Installation with 'Drag-and-Drop'
 

@@ -11,7 +11,7 @@ A simple lightweight Objective-C promises.
 
 ## Installation
 
-VSPromise supports two methods for installing the library in a project.
+VSPromise supports two methods for installing it in a project.
 
 #### Installation with CocoaPods
 

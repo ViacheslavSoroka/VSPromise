@@ -9,6 +9,28 @@ A simple lightweight Objective-C promises.
   - Transformation of result
   - Thread-safe
 
+## Installation
+
+VSPromise supports two methods for installing the library in a project.
+
+#### Installation with CocoaPods
+
+To integrate VSPromise into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+`
+target 'TargetName' do
+pod 'VSPromise'
+end
+`
+
+Then, run the following command:
+
+`$ pod install`
+
+#### Installation with 'Drag-and-Drop'
+
+Just copy files from 'Source' folder into your project and add them to your target.
+
 ## Usage:
 #### Basic usage
 ```objective-c

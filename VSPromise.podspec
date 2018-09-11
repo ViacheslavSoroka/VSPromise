@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = "VSPromise"
-  s.version   = "1.0.0"
+  s.version   = "1.0.1"
   s.summary   = "A simple lightweight Ojective-C promises"
   s.description  = <<-DESC
                      VSPromise is a simple Objective-C implementation of promises.

@@ -28,17 +28,18 @@ promise.then(^id(id result) {
     // This block will be called, if you get and error in any previous `then` block
     
     return nil;
-}).finaly(^{
+})
+.finaly(^{
     // This block will be called after all then or fail blocks.
 });
 ```
 
 #### How to use promises in your async methods
 ```objective-c
-+ (VSPromise *)someAsyncMethod:(id)params
+- (VSPromise *)someAsyncMethod:(id)params
 {
     VSPromise *promise = [VSPromise promise];
-    [self someAsyncMethodWithCompletion:^(id result, id error) { 
+    [self someAsyncMethodWithCompletion:^(id result, NSError *error) { 
         if (!error) {
             [promise resolve:result];
         }
